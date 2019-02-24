@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://code.alibabatech.com/schema/dubbo 
+		http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+		
+	<!-- 给当前Provider自定义个名字 -->
+	<dubbo:application name="dubbo-ego-service"/>
+	<!-- 配置注册中心  -->
+	<dubbo:registry address="192.168.137.11:2181" protocol="zookeeper"></dubbo:registry>
+	<!-- 配置端口 -->
+	<dubbo:protocol name="dubbo" port="20888" payload="83886080"></dubbo:protocol>
+	<!-- 注册功能 -->
+	<dubbo:service interface="com.lsl.dubbo.service.TbItemDubboService" ref="tbItemDubboServiceImpl"></dubbo:service>
+	<bean id="tbItemDubboServiceImpl" class="com.lsl.dubbo.service.impl.TbItemServiceImpl"></bean>
+	<!-- 商品类目服务 -->
+	<dubbo:service interface="com.lsl.dubbo.service.TbItemCatDubboService" ref="TbItemCatDubboServiceImpl"></dubbo:service>
+	<bean id="TbItemCatDubboServiceImpl" class="com.lsl.dubbo.service.impl.TbItemCatDubboServiceImpl"></bean>
+	<!-- 商品描述服务 -->
+	<bean id="tbItemDescDubboServiceImpl" class="com.lsl.dubbo.service.impl.TbItemDescDubboServiceImpl"></bean>
+	<dubbo:service interface="com.lsl.dubbo.service.TbItemDescDubboService" ref="tbItemDescDubboServiceImpl"></dubbo:service>
+	<!-- 商品规格参数描述 -->
+	<bean id="tbItemParamDubboServiceImpl" class="com.lsl.dubbo.service.impl.TbItemParamDubboServiceImpl"></bean>
+	<dubbo:service interface="com.lsl.dubbo.service.TbItemParamDubboService" ref="tbItemParamDubboServiceImpl"></dubbo:service>
+	<!-- 内容类目分类 -->
+	<bean id="tbContentCategoryDubboServiceImpl" class="com.lsl.dubbo.service.impl.TbContentCategoryDubboServiceImpl"></bean>
+	<dubbo:service interface="com.lsl.dubbo.service.TbContentCategoryDubboService" ref="tbContentCategoryDubboServiceImpl"></dubbo:service>
+	<!-- 内容查询 -->
+	<bean id="tbContentDubboServiceImpl" class="com.lsl.dubbo.service.impl.TbContentDubboServiceImpl"></bean>
+	<dubbo:service interface="com.lsl.dubbo.service.TbContentDubboService" ref="tbContentDubboServiceImpl"></dubbo:service>
+	
+	<!-- 商品规格参数描述 -->
+	<bean id="tbItemParamItemDubboServiceImpl" class="com.lsl.dubbo.service.impl.TbItemParamItemDubboServiceImpl"></bean>
+	<dubbo:service interface="com.lsl.dubbo.service.TbItemParamItemDubboService" ref="tbItemParamItemDubboServiceImpl"></dubbo:service>
+	<!-- 用户登录 -->
+	<bean id="tbUserDubboServiceImpl" class="com.lsl.dubbo.service.impl.TbUserDubboServiceImpl"></bean>
+	<dubbo:service interface="com.lsl.dubbo.service.TbUserDubboService" ref="tbUserDubboServiceImpl"></dubbo:service>
+	<!-- 创建订单 -->
+	<bean id="tbOrderDubboServiceImpl" class="com.lsl.dubbo.service.impl.TbOrderDubboServiceImpl"></bean>
+	<dubbo:service interface="com.lsl.dubbo.service.TbOrderDubboService" ref="tbOrderDubboServiceImpl"></dubbo:service>
+	<import resource="../../applicationContext.xml"/>
+</beans>
+
